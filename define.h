@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
-//#define TextBuffer		0xf000 //¹ÊÒâÕâÑù£¬ÒÔ¼ìÑéÊÇ·ñµØÖ·Ïà¹Ø
+//#define TextBuffer		0xf000 //æ•…æ„è¿™æ ·ï¼Œä»¥æ£€éªŒæ˜¯å¦åœ°å€ç›¸å…³
 //#define string_stack		0xf200
 //#define patbuf			0xfe00
 //#define eval_stack		0xff00
@@ -63,7 +63,7 @@ extern HMENU hMenu;
 extern int EmuRunning,PauseFlag,RamError,stop_line,stop_func,func_top;
 extern int sline[256],sline_num;
 extern int TVSCAN,GRAY,ENDVERIFY,CHECKRAM;
-extern int ScreenWidth,ScreenHeight,ScreenDouble; //¿É±äµÄÆÁÄ»¿í¸ß
+extern int ScreenWidth,ScreenHeight,ScreenDouble; //å¯å˜çš„å±å¹•å®½é«˜
 extern int TotalFrame;
 extern byte SaveTemp[0x80];
 extern char FcPath[MAX_PATH];
@@ -72,8 +72,8 @@ extern char CheatPath[MAX_PATH];
 extern char *pRomName;
 extern byte VRam[0x1000000];//[65536];
 extern byte *lRam;
-extern struct TASK task[16]; //ÈÎÎñÕ»
-extern int task_lev; //ÈÎÎñ¼¶
+extern struct TASK task[16]; //ä»»åŠ¡æ ˆ
+extern int task_lev; //ä»»åŠ¡çº§
 extern byte *ascii;//[1536];
 extern byte *ascii8;//[2048];
 extern byte *gbfont;//[81*94*24];
@@ -92,8 +92,8 @@ extern byte lav_key;
 extern byte wait_key;
 extern int have_pen,have_keypad;
 extern int pen_x,pen_y;
-extern byte hardinput_rp,hardinput_wp; //Ó²¼şÊäÈëÏûÏ¢¶ÓÁĞµÄ¶ÁĞ´Ö¸Õë
-extern struct MESSAGE hardinput[256]; //LavaXĞéÄâ»úµÄÓ²¼şÊäÈëÏûÏ¢¶ÓÁĞ
+extern byte hardinput_rp,hardinput_wp; //ç¡¬ä»¶è¾“å…¥æ¶ˆæ¯é˜Ÿåˆ—çš„è¯»å†™æŒ‡é’ˆ
+extern struct MESSAGE hardinput[256]; //LavaXè™šæ‹Ÿæœºçš„ç¡¬ä»¶è¾“å…¥æ¶ˆæ¯é˜Ÿåˆ—
 
 extern int LavOpen(FILE *fp);
 extern int TaskOpen(char *name);

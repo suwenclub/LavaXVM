@@ -43,7 +43,7 @@ int get_total_files(char *path)
 	while (find_handle!=INVALID_HANDLE_VALUE) {
 		if (strcmp(FILE_NAME(file_info),".")==0) ;
 		else if (strcmp(FILE_NAME(file_info),"..")==0) ;
-		else if (strlen(FILE_NAME(file_info))>14) ; //ÎÄ¼şÃû³¬¹ı14¸ö×Ö·û
+		else if (strlen(FILE_NAME(file_info))>14) ; //æ–‡ä»¶åè¶…è¿‡14ä¸ªå­—ç¬¦
 		else total++;
 		if (FIND_NEXT(&file_info)==0) {
 			FindClose(find_handle);
@@ -115,9 +115,9 @@ int get_total_files_ex(char *path)
 	while (find_handle!=INVALID_HANDLE_VALUE) {
 		if (strcmp(FILE_NAME(file_info),".")==0) ;
 		else if (strcmp(FILE_NAME(file_info),"..")==0) ;
-		//else if (strlen(FILE_NAME(file_info))>14) ; //ÎÄ¼şÃû³¬¹ı14¸ö×Ö·û
-		else if (!if_ext_name(FILE_NAME(file_info))) ; //À©Õ¹Ãû²»·û
-		else if ((file_info.dwFileAttributes&attr_mask)!=attr_val) ; //ÎÄ¼şÊôĞÔ²»¶Ô
+		//else if (strlen(FILE_NAME(file_info))>14) ; //æ–‡ä»¶åè¶…è¿‡14ä¸ªå­—ç¬¦
+		else if (!if_ext_name(FILE_NAME(file_info))) ; //æ‰©å±•åä¸ç¬¦
+		else if ((file_info.dwFileAttributes&attr_mask)!=attr_val) ; //æ–‡ä»¶å±æ€§ä¸å¯¹
 		else total++;
 		if (FIND_NEXT(&file_info)==0) {
 			FindClose(find_handle);
@@ -145,7 +145,7 @@ void get_file_name(char *path,int index,char *name)
 	while (find_handle!=INVALID_HANDLE_VALUE) {
 		if (strcmp(FILE_NAME(file_info),".")==0) ;
 		else if (strcmp(FILE_NAME(file_info),"..")==0) ;
-		else if (strlen(FILE_NAME(file_info))>14) ; //ÎÄ¼şÃû³¬¹ı14¸ö×Ö·û
+		else if (strlen(FILE_NAME(file_info))>14) ; //æ–‡ä»¶åè¶…è¿‡14ä¸ªå­—ç¬¦
 		else {
 			if (id==index) {
 				strcpy(name,FILE_NAME(file_info));
@@ -179,9 +179,9 @@ void get_file_name_ex(char *path,int index,char *name,int len)
 	while (find_handle!=INVALID_HANDLE_VALUE) {
 		if (strcmp(FILE_NAME(file_info),".")==0) ;
 		else if (strcmp(FILE_NAME(file_info),"..")==0) ;
-		//else if (strlen(FILE_NAME(file_info))>14) ; //ÎÄ¼şÃû³¬¹ı14¸ö×Ö·û
-		else if (!if_ext_name(FILE_NAME(file_info))) ; //À©Õ¹Ãû²»·û
-		else if ((file_info.dwFileAttributes&attr_mask)!=attr_val) ; //ÎÄ¼şÊôĞÔ²»¶Ô
+		//else if (strlen(FILE_NAME(file_info))>14) ; //æ–‡ä»¶åè¶…è¿‡14ä¸ªå­—ç¬¦
+		else if (!if_ext_name(FILE_NAME(file_info))) ; //æ‰©å±•åä¸ç¬¦
+		else if ((file_info.dwFileAttributes&attr_mask)!=attr_val) ; //æ–‡ä»¶å±æ€§ä¸å¯¹
 		else {
 			if (id==index) {
 				strncpy(name,FILE_NAME(file_info),len-1);

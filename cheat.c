@@ -193,20 +193,20 @@ void chtExe()
 		p+=2;
 		value=*(word *)p;
 		switch (type) {
-		case 0: //byte锁定
+		case 0: //byte閿佸畾
 			lRam[address]=(byte)value;
 			break;
-		case 1: //byte只增
+		case 1: //byte鍙
 			value&=0xff;
 			if (lRam[address]>=value)
 				*p=lRam[address];
 			else
 				lRam[address]=(byte)value;
 			break;
-		case 2: //word锁定
+		case 2: //word閿佸畾
 			*(word *)(lRam+address)=value;
 			break;
-		case 3: //word只增
+		case 3: //word鍙
 			if (*(word *)(lRam+address)>=value)
 				*(word *)p=*(word *)(lRam+address);
 			else

@@ -28,44 +28,44 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 
 IDR_MENU1 MENU DISCARDABLE 
 BEGIN
-    POPUP "ÎÄ¼þ"
+    POPUP "æ–‡ä»¶"
     BEGIN
-        MENUITEM "´ò¿ªLavaX...",                ID_OPEN
-        MENUITEM "¹Ø±ÕLavaX",                   ID_CLOSE, GRAYED
-        MENUITEM "¸´Î»\tF8",                    ID_RESET, GRAYED
+        MENUITEM "æ‰“å¼€LavaX...",                ID_OPEN
+        MENUITEM "å…³é—­LavaX",                   ID_CLOSE, GRAYED
+        MENUITEM "å¤ä½\tF8",                    ID_RESET, GRAYED
         MENUITEM SEPARATOR
-        MENUITEM "ÍË³ö",                        ID_EXIT
+        MENUITEM "é€€å‡º",                        ID_EXIT
     END
-    POPUP "ÉèÖÃ"
+    POPUP "è®¾ç½®"
     BEGIN
-        MENUITEM "¸ôÐÐÉ¨Ãè",                    ID_TVSCAN
-        MENUITEM "ºÚ°×",                        ID_GRAY
+        MENUITEM "éš”è¡Œæ‰«æ",                    ID_TVSCAN
+        MENUITEM "é»‘ç™½",                        ID_GRAY
         MENUITEM SEPARATOR
-        MENUITEM "½áÊøÊ±ÈÏÖ¤",                  ID_ENDVERIFY
-        POPUP "°²È«¼ì²â"
+        MENUITEM "ç»“æŸæ—¶è®¤è¯",                  ID_ENDVERIFY
+        POPUP "å®‰å…¨æ£€æµ‹"
         BEGIN
-            MENUITEM "²»¼ì²â",                      ID_RAM0
-            MENUITEM "¿íËÉ¼ì²â",                    ID_RAM1, CHECKED
-            MENUITEM "ÑÏ¸ñ¼ì²â",                    ID_RAM2
+            MENUITEM "ä¸æ£€æµ‹",                      ID_RAM0
+            MENUITEM "å®½æ¾æ£€æµ‹",                    ID_RAM1, CHECKED
+            MENUITEM "ä¸¥æ ¼æ£€æµ‹",                    ID_RAM2
         END
     END
-    POPUP "¹¤¾ß"
+    POPUP "å·¥å…·"
     BEGIN
-        MENUITEM "¶¯Ì¬ÈÏÖ¤",                    ID_VERIFY
-        MENUITEM "¾²Ì¬ÈÏÖ¤",                    ID_CHECK
+        MENUITEM "åŠ¨æ€è®¤è¯",                    ID_VERIFY
+        MENUITEM "é™æ€è®¤è¯",                    ID_CHECK
         MENUITEM SEPARATOR
-        MENUITEM "ÆÁÄ»½ØÍ¼\tF9",                ID_BMP
+        MENUITEM "å±å¹•æˆªå›¾\tF9",                ID_BMP
         MENUITEM SEPARATOR
-        MENUITEM "ÆôÓÃ½ðÊÖÖ¸",                  ID_CHTUSE, CHECKED
-        MENUITEM "±à¼­½ðÊÖÖ¸...",               ID_CHTEDIT
-        MENUITEM "ËÑË÷½ðÊÖÖ¸...",               ID_FINDCHEAT
+        MENUITEM "å¯ç”¨é‡‘æ‰‹æŒ‡",                  ID_CHTUSE, CHECKED
+        MENUITEM "ç¼–è¾‘é‡‘æ‰‹æŒ‡...",               ID_CHTEDIT
+        MENUITEM "æœç´¢é‡‘æ‰‹æŒ‡...",               ID_FINDCHEAT
         MENUITEM SEPARATOR
-        MENUITEM "×¢²áPAC·þÎñ",                 ID_REGPAC
-        MENUITEM "³·ÏûPAC·þÎñ",                 ID_UNREGPAC
+        MENUITEM "æ³¨å†ŒPACæœåŠ¡",                 ID_REGPAC
+        MENUITEM "æ’¤æ¶ˆPACæœåŠ¡",                 ID_UNREGPAC
     END
-    POPUP "°ïÖú"
+    POPUP "å¸®åŠ©"
     BEGIN
-        MENUITEM "¹ØÓÚLavaX Virtual Machine",   ID_ABOUT
+        MENUITEM "å…³äºŽLavaX Virtual Machine",   ID_ABOUT
     END
 END
 
@@ -115,16 +115,16 @@ END
 
 IDD_ABOUT DIALOG DISCARDABLE  0, 0, 187, 105
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "¹ØÓÚLavaX Virtual Machine"
-FONT 9, "ËÎÌå"
+CAPTION "å…³äºŽLavaX Virtual Machine"
+FONT 9, "å®‹ä½“"
 BEGIN
-    DEFPUSHBUTTON   "È·¶¨",IDOK,141,7,39,14
+    DEFPUSHBUTTON   "ç¡®å®š",IDOK,141,7,39,14
     LTEXT           "LavaX Virtual Machine",IDC_STATIC,44,7,86,12
     CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME | SS_SUNKEN,6,57,
                     173,1
     ICON            IDI_ICON1,IDC_STATIC,13,16,20,20
-    LTEXT           "°æ±¾£º3.5.3.060625",IDC_STATIC,44,23,86,10
-    LTEXT           "°æÈ¨ËùÓÐ (C)  2003-2015  LeeSoft",IDC_STATIC,44,41,132,
+    LTEXT           "ç‰ˆæœ¬ï¼š3.5.3.060625",IDC_STATIC,44,23,86,10
+    LTEXT           "ç‰ˆæƒæ‰€æœ‰ (C)  2003-2015  LeeSoft",IDC_STATIC,44,41,132,
                     11
     EDITTEXT        IDC_EDIT1,7,64,172,32,ES_MULTILINE | ES_READONLY | 
                     ES_WANTRETURN | WS_VSCROLL
@@ -132,37 +132,37 @@ END
 
 IDD_FINDCHEAT DIALOG DISCARDABLE  0, 0, 159, 162
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "ËÑË÷½ðÊÖÖ¸"
-FONT 10, "ËÎÌå"
+CAPTION "æœç´¢é‡‘æ‰‹æŒ‡"
+FONT 10, "å®‹ä½“"
 BEGIN
-    RADIOBUTTON     "ÏàµÈ",IDC_EQU,15,15,28,13
-    RADIOBUTTON     "Ôö¼Ó",IDC_ABOVE,15,30,28,13
-    RADIOBUTTON     "¼õÉÙ",IDC_BELOW,15,46,28,13
-    RADIOBUTTON     "ÊýÖµ",IDC_DATA,15,63,28,13
-    GROUPBOX        "ËÑË÷·½Ê½",IDC_STATIC,7,7,49,73
-    RADIOBUTTON     "8Î»",IDC_8bits,17,95,28,13
-    RADIOBUTTON     "16Î»",IDC_16bits,17,111,28,13
-    GROUPBOX        "Êý¾ÝÀàÐÍ",IDC_STATIC,7,87,49,43
+    RADIOBUTTON     "ç›¸ç­‰",IDC_EQU,15,15,28,13
+    RADIOBUTTON     "å¢žåŠ ",IDC_ABOVE,15,30,28,13
+    RADIOBUTTON     "å‡å°‘",IDC_BELOW,15,46,28,13
+    RADIOBUTTON     "æ•°å€¼",IDC_DATA,15,63,28,13
+    GROUPBOX        "æœç´¢æ–¹å¼",IDC_STATIC,7,7,49,73
+    RADIOBUTTON     "8ä½",IDC_8bits,17,95,28,13
+    RADIOBUTTON     "16ä½",IDC_16bits,17,111,28,13
+    GROUPBOX        "æ•°æ®ç±»åž‹",IDC_STATIC,7,87,49,43
     LISTBOX         IDC_LB,74,7,76,123,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
                     WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_EDIT,7,141,38,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Ô¤±¸",IDC_PREFIND,58,141,23,14
-    PUSHBUTTON      "ËÑË÷",IDC_FIND,88,141,23,14
-    PUSHBUTTON      "¼ÆËãÆ÷",IDC_CALC,119,141,31,14
+    PUSHBUTTON      "é¢„å¤‡",IDC_PREFIND,58,141,23,14
+    PUSHBUTTON      "æœç´¢",IDC_FIND,88,141,23,14
+    PUSHBUTTON      "è®¡ç®—å™¨",IDC_CALC,119,141,31,14
 END
 
 IDD_CHTEDIT DIALOG DISCARDABLE  0, 0, 178, 118
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "±à¼­½ðÊÖÖ¸"
-FONT 10, "ËÎÌå"
+CAPTION "ç¼–è¾‘é‡‘æ‰‹æŒ‡"
+FONT 10, "å®‹ä½“"
 BEGIN
     LISTBOX         IDC_LB,7,7,75,104,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
                     WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_TEXT,99,7,72,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "Ôö¼Ó",IDC_ADD,99,29,72,13
-    PUSHBUTTON      "É¾³ý",IDC_DEL,99,52,72,13
-    PUSHBUTTON      "ÐÞ¸Ä",IDC_EDIT,99,75,72,13
-    PUSHBUTTON      "È·ÈÏ",IDC_SAVE,99,98,72,13
+    PUSHBUTTON      "å¢žåŠ ",IDC_ADD,99,29,72,13
+    PUSHBUTTON      "åˆ é™¤",IDC_DEL,99,52,72,13
+    PUSHBUTTON      "ä¿®æ”¹",IDC_EDIT,99,75,72,13
+    PUSHBUTTON      "ç¡®è®¤",IDC_SAVE,99,98,72,13
 END
 
 

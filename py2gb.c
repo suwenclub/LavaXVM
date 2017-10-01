@@ -10,8 +10,8 @@
 byte *pinyin;
 
 /* --------------------------
- * ÕÛ°ë²éÕÒÊäÈë´®µÄĞòÁĞºÅ
- * ²é²»µ½µÄ»°·µ»Ø0xffff
+ * æŠ˜åŠæŸ¥æ‰¾è¾“å…¥ä¸²çš„åºåˆ—å·
+ * æŸ¥ä¸åˆ°çš„è¯è¿”å›0xffff
  * --------------------------*/
 word get_seq_no(byte *InputBuffer)
 {
@@ -20,7 +20,7 @@ word get_seq_no(byte *InputBuffer)
 	int top,mid,bot;
 	byte ibuf[10],obuf[10];
 
-	for( i = 0; i < 6; i++ ) {   //ÎŞÂÛÊäÈë¶àÉÙ,È¡Ç°6¸ö×Ö·û
+	for( i = 0; i < 6; i++ ) {   //æ— è®ºè¾“å…¥å¤šå°‘,å–å‰6ä¸ªå­—ç¬¦
 		ibuf[i] = *( InputBuffer + i );
 		if( ibuf[i] == '\0')
 			break;
@@ -50,10 +50,10 @@ word get_seq_no(byte *InputBuffer)
 
 unsigned long GetGBCodeByPY( unsigned int pos, byte *InputBuffer, byte *OutBuffer )
 {
-	word sum;			//gb ¸öÊı
+	word sum;			//gb ä¸ªæ•°
 	word gbidx[2];			//gb idx
 	word seqno;
-	byte *gbofs;		//gb ÂëÖµµÄsector and offset
+	byte *gbofs;		//gb ç å€¼çš„sector and offset
 	byte tmpidx[5];
 	union {
 		a32 value;

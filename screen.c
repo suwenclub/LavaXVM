@@ -1,6 +1,6 @@
 #include "define.h"
 
-int ScreenWidth=160,ScreenHeight=80; //¿É±äµÄÆÁÄ»¿í¸ß
+int ScreenWidth=160,ScreenHeight=80; //å¯å˜çš„å±å¹•å®½é«˜
 int ScreenDouble=1;
 
 byte ScreenBuffer[LCD_WIDTH*(LCD_HEIGHT*2+16)];
@@ -20,10 +20,10 @@ static BITMAPINFOX bmi,bmik,bmis;
 static byte palette[256*3];
 
 static byte syspalette[]={
-	0x00,0x00,0x00,0xbf,0xbf,0xbf, //KEYµ÷É«
-	0x00,0x00,0x00,0x00,0xff,0x00, //MESSµ÷É«
-	0x00,0xc0,0x00,0x00,0x00,0x00, //ºÚÂÌ2É«
-	0xff,0xff,0xff,0x00,0x00,0x00  //ºÚ°×2É«
+	0x00,0x00,0x00,0xbf,0xbf,0xbf, //KEYè°ƒè‰²
+	0x00,0x00,0x00,0x00,0xff,0x00, //MESSè°ƒè‰²
+	0x00,0xc0,0x00,0x00,0x00,0x00, //é»‘ç»¿2è‰²
+	0xff,0xff,0xff,0x00,0x00,0x00  //é»‘ç™½2è‰²
 };
 
 void calcPalette()
@@ -40,7 +40,7 @@ void calcPalette()
 
 void Palette2()
 {
-	if (GRAY) //ºÚ°×±ä»»
+	if (GRAY) //é»‘ç™½å˜æ¢
 		memcpy(palette,syspalette+18,6);
 	else
 		memcpy(palette,syspalette+12,6);
@@ -109,7 +109,7 @@ void SetSBuffer()
 {
 	memset(BmpData,0,320*ScreenHeight);
 	memset(ScreenBuffer,0,320*8);
-	memset(ScreenBufferX,255,320*336); //Çå´óÆÁ
+	memset(ScreenBufferX,255,320*336); //æ¸…å¤§å±
 	memset(ScreenBlack,0,320*8);
 }
 
@@ -221,7 +221,7 @@ void WriteScreen(HDC hdc,int flag)
 		SetDIBitsToDevice(hdc,0,0,320,16,0,0,0,16,ScreenBufferX+ScreenHeight*320,(BITMAPINFO *)(&bmis),DIB_RGB_COLORS);
 		SetDIBitsToDevice(hdc,0,16,320,ScreenHeight,0,0,0,ScreenHeight,ScreenBufferX,(BITMAPINFO *)(&bmi),DIB_RGB_COLORS);
 	}
-	//×¢:Ê¹ÓÃStretchDIBits±È½ÏSetDIBitsToDevice¶øÑÔÑÏÖØÓ°ÏìËÙ¶È
+	//æ³¨:ä½¿ç”¨StretchDIBitsæ¯”è¾ƒSetDIBitsToDeviceè€Œè¨€ä¸¥é‡å½±å“é€Ÿåº¦
 }
 
 BITMAPFILEHEADER bfh;

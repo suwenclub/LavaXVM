@@ -100,7 +100,7 @@ void check()
 		} else if (t<=0x72) {
 			if (v<0x35) v=0x35;
 		} else if (t<128) {
-			FATAL("·Çrelease°æ£¬²»ÓèÈÏÖ¤!");
+			FATAL("éžreleaseç‰ˆï¼Œä¸äºˆè®¤è¯!");
 			return;
 		} else if (t<=128+74) {
 			if (v<0x10) v=0x10;
@@ -112,7 +112,7 @@ void check()
 			if (v<0x31) v=0x31;
 		}
 		if (p[t]==9) {
-			if (*pz) error=1; //×îºóÒ»¸ö×Ö½Ú´í²»Ëã´í
+			if (*pz) error=1; //æœ€åŽä¸€ä¸ªå­—èŠ‚é”™ä¸ç®—é”™
 			break;
 		}
 		switch (p[t]) {
@@ -142,11 +142,11 @@ void check()
 		}
 	}
 	mess[0]=0;
-	if (graph) strcat(mess,"\nº¬ÓÐ·Ç¿çÆ½Ì¨Ö¸Áî_GRAPH");
-	if (gbuf) strcat(mess,"\nº¬ÓÐ·Ç¿çÆ½Ì¨Ö¸Áî_GBUF");
-	if (text) strcat(mess,"\nº¬ÓÐ·Ç¿çÆ½Ì¨Ö¸Áî_TEXT");
+	if (graph) strcat(mess,"\nå«æœ‰éžè·¨å¹³å°æŒ‡ä»¤_GRAPH");
+	if (gbuf) strcat(mess,"\nå«æœ‰éžè·¨å¹³å°æŒ‡ä»¤_GBUF");
+	if (text) strcat(mess,"\nå«æœ‰éžè·¨å¹³å°æŒ‡ä»¤_TEXT");
 	if (error) {
-		sprintf(s,"\nº¬ÓÐ´íÎóÖ¸Áî»òº¯ÊýÔÚÎ»ÖÃ%d",pz-1-pLAVA);
+		sprintf(s,"\nå«æœ‰é”™è¯¯æŒ‡ä»¤æˆ–å‡½æ•°åœ¨ä½ç½®%d",pz-1-pLAVA);
 		strcat(mess,s);
 	}
 	if (*(pLAVA+8)&0x80) {
@@ -163,7 +163,7 @@ void check()
 	}
 	if (mess[0]==0) {
 		if (v<=0x10 && (*(pLAVA+8)&0x90)==0)
-			strcat(mess,"\nÈ«Æ½Ì¨ÊÊÓÃ");
+			strcat(mess,"\nå…¨å¹³å°é€‚ç”¨");
 		else {
 			sprintf(mess,"\nLavaX%d.%d",v/16,v&0xf);
 		}

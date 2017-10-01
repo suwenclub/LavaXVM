@@ -107,10 +107,10 @@ byte *ascii;//[1536];
 byte *ascii8;//[2048];
 byte *gbfont;//[81*94*24];
 byte *gbfont16;//[81*94*32];
-byte *lPC; //lava³ÌĞòÖ¸Õë
+byte *lPC; //lavaç¨‹åºæŒ‡é’ˆ
 byte VRam[0x1000000];//[65536];
-struct TASK task[16]; //ÈÎÎñÕ»
-int task_lev; //ÈÎÎñ¼¶
+struct TASK task[16]; //ä»»åŠ¡æ ˆ
+int task_lev; //ä»»åŠ¡çº§
 byte *lRam;
 byte eval_top;
 byte secret;
@@ -172,10 +172,10 @@ void verify()
 {
 	a32 t;
 	char s[100];
-	static char lev[][5]={"ALL","8K","12K","16K","20K","¡Á"};
+	static char lev[][5]={"ALL","8K","12K","16K","20K","Ã—"};
 
 	if (d_line>=0) {
-		FATAL("·Çrelease°æ£¬²»ÓèÈÏÖ¤!");
+		FATAL("éreleaseç‰ˆï¼Œä¸äºˆè®¤è¯!");
 		return;
 	}
 	if (ramuses<0x2000 || ramuses>ramusee) t=5;
@@ -188,17 +188,17 @@ void verify()
 		else if (t<=20*1024) t=4;
 		else {
 			if (ramarm)
-				sprintf(s,"LavaXÈÏÖ¤:LavaX %dK,ARM´¦ÀíÆ÷ÓÅ»¯\n\n±¾¹¤¾ß½ö¹©²Î¿¼£¬ÒÔLavaX¹Ù·½ÈÏÖ¤»ú¹¹¹«²¼½á¹ûÎª×¼¡£",(t+1023)/1024);
+				sprintf(s,"LavaXè®¤è¯:LavaX %dK,ARMå¤„ç†å™¨ä¼˜åŒ–\n\næœ¬å·¥å…·ä»…ä¾›å‚è€ƒï¼Œä»¥LavaXå®˜æ–¹è®¤è¯æœºæ„å…¬å¸ƒç»“æœä¸ºå‡†ã€‚",(t+1023)/1024);
 			else
-				sprintf(s,"LavaXÈÏÖ¤:LavaX %dK\n\n±¾¹¤¾ß½ö¹©²Î¿¼£¬ÒÔLavaX¹Ù·½ÈÏÖ¤»ú¹¹¹«²¼½á¹ûÎª×¼¡£",(t+1023)/1024);
+				sprintf(s,"LavaXè®¤è¯:LavaX %dK\n\næœ¬å·¥å…·ä»…ä¾›å‚è€ƒï¼Œä»¥LavaXå®˜æ–¹è®¤è¯æœºæ„å…¬å¸ƒç»“æœä¸ºå‡†ã€‚",(t+1023)/1024);
 			FATAL(s);
 			return;
 		}
 	}
 	if (ramarm)
-		sprintf(s,"LavaXÈÏÖ¤:LavaX %s,ARM´¦ÀíÆ÷ÓÅ»¯\n\n±¾¹¤¾ß½ö¹©²Î¿¼£¬ÒÔLavaX¹Ù·½ÈÏÖ¤»ú¹¹¹«²¼½á¹ûÎª×¼¡£",lev[t]);
+		sprintf(s,"LavaXè®¤è¯:LavaX %s,ARMå¤„ç†å™¨ä¼˜åŒ–\n\næœ¬å·¥å…·ä»…ä¾›å‚è€ƒï¼Œä»¥LavaXå®˜æ–¹è®¤è¯æœºæ„å…¬å¸ƒç»“æœä¸ºå‡†ã€‚",lev[t]);
 	else
-		sprintf(s,"LavaXÈÏÖ¤:LavaX %s\n\n±¾¹¤¾ß½ö¹©²Î¿¼£¬ÒÔLavaX¹Ù·½ÈÏÖ¤»ú¹¹¹«²¼½á¹ûÎª×¼¡£",lev[t]);
+		sprintf(s,"LavaXè®¤è¯:LavaX %s\n\næœ¬å·¥å…·ä»…ä¾›å‚è€ƒï¼Œä»¥LavaXå®˜æ–¹è®¤è¯æœºæ„å…¬å¸ƒç»“æœä¸ºå‡†ã€‚",lev[t]);
 	FATAL(s);
 }
 
@@ -222,7 +222,7 @@ void make_negative()
 
 void set_sys_ram()
 {
-	TextBuffer=		0x1400; //¹ÊÒâÕâÑù£¬ÒÔ¼ìÑéÊÇ·ñµØÖ·Ïà¹Ø
+	TextBuffer=		0x1400; //æ•…æ„è¿™æ ·ï¼Œä»¥æ£€éªŒæ˜¯å¦åœ°å€ç›¸å…³
 	string_stack=	0x1c00;
 	eval_stack=		0x1b00;
 }
@@ -255,7 +255,7 @@ void lavReset()
 		set_sys_ram();
 		string_ptr=string_stack;
 	} else {
-		memset(&lRam[0x2000],0,0xe000); //Çå±äÁ¿Çø
+		memset(&lRam[0x2000],0,0xe000); //æ¸…å˜é‡åŒº
 		set_sys_ram();
 		string_ptr=string_stack;
 	}
@@ -315,7 +315,7 @@ void c_exit()
 
 	get_val();
 	ret_val=a1;
-	for (i=0;i<3;i++) { //¹Ø±ÕËùÓĞ´ò¿ªµÄÎÄ¼ş
+	for (i=0;i<3;i++) { //å…³é—­æ‰€æœ‰æ‰“å¼€çš„æ–‡ä»¶
 		if (fhave[i]) {
 			fhave[i]=0;
 			CloseHandle(fhandle[i]);
@@ -372,15 +372,15 @@ void DispRamErr(a32 s,a32 e)
 	if (RamError) return;
 	RamError=1;
 	if (s==e)
-		sprintf(str,"´íÎóµÄ¶ÁĞ´µØÖ·%x",s);
+		sprintf(str,"é”™è¯¯çš„è¯»å†™åœ°å€%x",s);
 	else
-		sprintf(str,"´íÎóµÄ¶ÁĞ´µØÖ·%x-%x",s,e);
+		sprintf(str,"é”™è¯¯çš„è¯»å†™åœ°å€%x-%x",s,e);
 	if (d_line>=0) {
-		sprintf(str2,"\n\n·¢ÉúÔÚ%dĞĞ",d_line);
+		sprintf(str2,"\n\nå‘ç”Ÿåœ¨%dè¡Œ",d_line);
 		strcat(str,str2);
 	}
 	FATAL(str);
-	ramuses=0; //È·±£ÎŞ·¨Í¨¹ıÈÏÖ¤
+	ramuses=0; //ç¡®ä¿æ— æ³•é€šè¿‡è®¤è¯
 	bad_exit();
 }
 
@@ -420,10 +420,10 @@ void div0_err()
 	char str[100];
 
 	if (d_line>=0) {
-		sprintf(str,"³ı0´í!\n\n·¢ÉúÔÚ%dĞĞ",d_line);
+		sprintf(str,"é™¤0é”™!\n\nå‘ç”Ÿåœ¨%dè¡Œ",d_line);
 		FATAL(str);
-	} else {FATAL("³ı0´í!");}
-	ramuses=0; //È·±£ÎŞ·¨Í¨¹ıÈÏÖ¤
+	} else {FATAL("é™¤0é”™!");}
+	ramuses=0; //ç¡®ä¿æ— æ³•é€šè¿‡è®¤è¯
 	bad_exit();
 }
 
@@ -865,30 +865,30 @@ void push_text()
 	lRam[eval_stack+eval_top++]=0;
 	lRam[eval_stack+eval_top++]=0;
 	lRam[eval_stack+eval_top++]=0;
-	FATAL("LavaX3.3°æÆğ²»Ö§³Ö_TEXT");
-	ramuses=0; //È·±£ÎŞ·¨Í¨¹ıÈÏÖ¤
+	FATAL("LavaX3.3ç‰ˆèµ·ä¸æ”¯æŒ_TEXT");
+	ramuses=0; //ç¡®ä¿æ— æ³•é€šè¿‡è®¤è¯
 	bad_exit();
 }
 
-void push_graph() //·µ»Ø0±íÊ¾²»Ö§³Ö_GRAPH
+void push_graph() //è¿”å›0è¡¨ç¤ºä¸æ”¯æŒ_GRAPH
 {
 	lRam[eval_stack+eval_top++]=0;
 	lRam[eval_stack+eval_top++]=0;
 	lRam[eval_stack+eval_top++]=0;
 	lRam[eval_stack+eval_top++]=0;
-	FATAL("LavaX3.0°æÆğ²»Ö§³Ö_GRAPH");
-	ramuses=0; //È·±£ÎŞ·¨Í¨¹ıÈÏÖ¤
+	FATAL("LavaX3.0ç‰ˆèµ·ä¸æ”¯æŒ_GRAPH");
+	ramuses=0; //ç¡®ä¿æ— æ³•é€šè¿‡è®¤è¯
 	bad_exit();
 }
 
-void push_gbuf() //·µ»Ø0±íÊ¾²»Ö§³Ö_GBUF
+void push_gbuf() //è¿”å›0è¡¨ç¤ºä¸æ”¯æŒ_GBUF
 {
 	lRam[eval_stack+eval_top++]=0;
 	lRam[eval_stack+eval_top++]=0;
 	lRam[eval_stack+eval_top++]=0;
 	lRam[eval_stack+eval_top++]=0;
-	FATAL("LavaX3.0°æÆğ²»Ö§³Ö_GBUF");
-	ramuses=0; //È·±£ÎŞ·¨Í¨¹ıÈÏÖ¤
+	FATAL("LavaX3.0ç‰ˆèµ·ä¸æ”¯æŒ_GBUF");
+	ramuses=0; //ç¡®ä¿æ— æ³•é€šè¿‡è®¤è¯
 	bad_exit();
 }
 
@@ -905,7 +905,7 @@ void inc_dec_com()
 	get_val2();
 	if (RamBits>16) {
 		t=(a3>>24)&0x7f;
-		if (a3&0x80000000) a3+=local_bp; //???ÓĞ¿ÉÄÜÔ½½ç£¬µ«Ò²¿ÉÒÔ²»¼ìÑé
+		if (a3&0x80000000) a3+=local_bp; //???æœ‰å¯èƒ½è¶Šç•Œï¼Œä½†ä¹Ÿå¯ä»¥ä¸æ£€éªŒ
 		a3&=0xffffff;
 		if (t==1) a1=lRamRead(a3);
 		else if (t==2) a1=lRamRead2(a3);
@@ -913,7 +913,7 @@ void inc_dec_com()
 		a3|=t<<24;
 	} else {
 		t=(a3>>16)&0x7f;
-		if (a3&0x800000) a3+=local_bp; //???ÓĞ¿ÉÄÜÔ½½ç£¬µ«Ò²¿ÉÒÔ²»¼ìÑé
+		if (a3&0x800000) a3+=local_bp; //???æœ‰å¯èƒ½è¶Šç•Œï¼Œä½†ä¹Ÿå¯ä»¥ä¸æ£€éªŒ
 		a3&=0xffff;
 		if (t==1) a1=lRamRead(a3);
 		else if (t==2) a1=lRamRead2(a3);
@@ -1164,11 +1164,11 @@ void c_let()
 	long t,t1;
 	get_vals();
 	if (RamBits>16) {
-		if (a1&0x80000000) t1=(a1+local_bp)&0xffffff; //???ÓĞ¿ÉÄÜÔ½½ç£¬µ«Ò²¿ÉÒÔ²»¼ìÑé
+		if (a1&0x80000000) t1=(a1+local_bp)&0xffffff; //???æœ‰å¯èƒ½è¶Šç•Œï¼Œä½†ä¹Ÿå¯ä»¥ä¸æ£€éªŒ
 		else t1=a1&0xffffff;
 		t=(a1>>24)&0x7f;
 	} else {
-		if (a1&0x800000) t1=(a1+local_bp)&0xffff; //???ÓĞ¿ÉÄÜÔ½½ç£¬µ«Ò²¿ÉÒÔ²»¼ìÑé
+		if (a1&0x800000) t1=(a1+local_bp)&0xffff; //???æœ‰å¯èƒ½è¶Šç•Œï¼Œä½†ä¹Ÿå¯ä»¥ä¸æ£€éªŒ
 		else t1=a1&0xffff;
 		t=(a1>>16)&0x7f;
 	}
@@ -1215,7 +1215,7 @@ void c_iptr()
 		a1&=0xffff;
 	a1=lRamRead(a1)+(lRamRead(a1+1)<<8);
 	a1&=0xffff;
-	if (a1&0x8000) a1|=0xffff0000; //¸ºÊı
+	if (a1&0x8000) a1|=0xffff0000; //è´Ÿæ•°
 	put_val();
 }
 
@@ -1302,7 +1302,7 @@ void set_sp()
 	local_sp=getcode();
 	local_sp+=getcode()<<8;
 	if (RamBits>16) local_sp+=getcode()<<16;
-	//if (local_sp&3) local_sp+=4-(local_sp&3); //Áî¶ÑÕ»¿ªÊ¼ÓÚ4×Ö½Ú±ß½ç
+	//if (local_sp&3) local_sp+=4-(local_sp&3); //ä»¤å †æ ˆå¼€å§‹äº4å­—èŠ‚è¾¹ç•Œ
 }
 
 void c_call()
@@ -1327,7 +1327,7 @@ void add_bp()
 	t+=getcode()<<8;
 	if (RamBits>16) t+=getcode()<<16;
 	local_sp=local_bp+(t&0xffffff);
-	//if (local_sp&3) local_sp+=4-(local_sp&3); //Áî¶ÑÕ»¿ªÊ¼ÓÚ4×Ö½Ú±ß½ç
+	//if (local_sp&3) local_sp+=4-(local_sp&3); //ä»¤å †æ ˆå¼€å§‹äº4å­—èŠ‚è¾¹ç•Œ
 	t=getcode()*4;
 	if (t) {
 		eval_top-=(word)t;
@@ -1765,7 +1765,7 @@ void ByteAddr()
 
 void put_dot()
 {
-	if (xx>=ScreenWidth) return; //ÔÚpc¶ËÔÊĞí²Ù×÷×î×óÁĞ£¬±Ï¾¹²»ÊÇËùÓĞLCD¶¼´øICONµÄ
+	if (xx>=ScreenWidth) return; //åœ¨pcç«¯å…è®¸æ“ä½œæœ€å·¦åˆ—ï¼Œæ¯•ç«Ÿä¸æ˜¯æ‰€æœ‰LCDéƒ½å¸¦ICONçš„
 	if (yy>=ScreenHeight) return;
 	ByteAddr();
 	if (graph_mode==1) {
@@ -1843,15 +1843,15 @@ void write_comm(word x,word y,word width,word height,byte *data)
 
 		if (y>=ScreenHeight) {
 			temp=0x10000-y;
-			if (height<=temp) return; //È«ÔÚ»­ÃæÍâ£¬²»ĞèÒª»­
+			if (height<=temp) return; //å…¨åœ¨ç”»é¢å¤–ï¼Œä¸éœ€è¦ç”»
 			height-=temp;
 			td+=temp*widths;
 			y=0;
 		}
-		if (y+height>ScreenHeight) height=ScreenHeight-y; //¼ôÈ¥³öµ×ÆÁ²¿·Ö
+		if (y+height>ScreenHeight) height=ScreenHeight-y; //å‰ªå»å‡ºåº•å±éƒ¨åˆ†
 		if (x_bak>=ScreenWidth) {
 			temp=0x10000-x_bak;
-			if (width<=temp) return; //È«ÔÚ»­ÃæÍâ£¬²»ĞèÒª»­
+			if (width<=temp) return; //å…¨åœ¨ç”»é¢å¤–ï¼Œä¸éœ€è¦ç”»
 			width-=temp;
 			td+=temp>>3;
 			if (temp&7) {
@@ -1974,15 +1974,15 @@ void write_comm(word x,word y,word width,word height,byte *data)
 			
 		if (y>=ScreenHeight) {
 			temp=0x10000-y;
-			if (height<=temp) return; //È«ÔÚ»­ÃæÍâ£¬²»ĞèÒª»­
+			if (height<=temp) return; //å…¨åœ¨ç”»é¢å¤–ï¼Œä¸éœ€è¦ç”»
 			height-=temp;
 			td+=temp*widths;
 			y=0;
 		}
-		if (y+height>ScreenHeight) height=ScreenHeight-y; //¼ôÈ¥³öµ×ÆÁ²¿·Ö
+		if (y+height>ScreenHeight) height=ScreenHeight-y; //å‰ªå»å‡ºåº•å±éƒ¨åˆ†
 		if (x_bak>=ScreenWidth) {
 			temp=0x10000-x_bak;
-			if (width<=temp) return; //È«ÔÚ»­ÃæÍâ£¬²»ĞèÒª»­
+			if (width<=temp) return; //å…¨åœ¨ç”»é¢å¤–ï¼Œä¸éœ€è¦ç”»
 			width-=temp;
 			td+=temp>>1;
 			if (temp&1) {
@@ -2112,15 +2112,15 @@ void write_comm(word x,word y,word width,word height,byte *data)
 			
 		if (y>=ScreenHeight) {
 			temp=0x10000-y;
-			if (height<=temp) return; //È«ÔÚ»­ÃæÍâ£¬²»ĞèÒª»­
+			if (height<=temp) return; //å…¨åœ¨ç”»é¢å¤–ï¼Œä¸éœ€è¦ç”»
 			height-=temp;
 			td+=temp*widths;
 			y=0;
 		}
-		if (y+height>ScreenHeight) height=ScreenHeight-y; //¼ôÈ¥³öµ×ÆÁ²¿·Ö
+		if (y+height>ScreenHeight) height=ScreenHeight-y; //å‰ªå»å‡ºåº•å±éƒ¨åˆ†
 		if (x_bak>=ScreenWidth) {
 			temp=0x10000-x_bak;
-			if (width<=temp) return; //È«ÔÚ»­ÃæÍâ£¬²»ĞèÒª»­
+			if (width<=temp) return; //å…¨åœ¨ç”»é¢å¤–ï¼Œä¸éœ€è¦ç”»
 			width-=temp;
 			td+=temp;
 			x_bak=0;
@@ -2468,7 +2468,7 @@ void vline()
 }
 
 void hline() 
-//µ÷ÓÃÇ°±ØĞëµ÷ÕûY0,x0,x1Ê¹ÆäÂú×ã£º
+//è°ƒç”¨å‰å¿…é¡»è°ƒæ•´Y0,x0,x1ä½¿å…¶æ»¡è¶³ï¼š
 //Y0<ScreenHeight x0<ScreenWidth x1<ScreenWidth x0<=x1
 {
 	word width;
@@ -2549,13 +2549,13 @@ void block_check()
 int hline_check()
 {
 	word t;
-	if (Y0>=ScreenHeight) return 0; //ÏßÔÚÆÁÄ»Íâ
+	if (Y0>=ScreenHeight) return 0; //çº¿åœ¨å±å¹•å¤–
 	if (x0>x1) {
 		t=x0;
 		x0=x1;
 		x1=t;
 	}
-	if (x0>=ScreenWidth) return 0; //ÏßÔÚÆÁÄ»Íâ
+	if (x0>=ScreenWidth) return 0; //çº¿åœ¨å±å¹•å¤–
 	if (x1>=ScreenWidth) x1=ScreenWidth-1;
 	return 1;
 }
@@ -2614,7 +2614,7 @@ void cout(byte c)
 	}
 }
 
-void update_lcd_small() //Test Ã»ÓĞ¿¼ÂÇ·´ÏÔ
+void update_lcd_small() //Test æ²¡æœ‰è€ƒè™‘åæ˜¾
 {
 	byte c,c2;
 	unsigned long mask;
@@ -2652,7 +2652,7 @@ void update_lcd_small() //Test Ã»ÓĞ¿¼ÂÇ·´ÏÔ
 	}
 }
 
-void update_lcd_large() //Test Ã»ÓĞ¿¼ÂÇ·´ÏÔ
+void update_lcd_large() //Test æ²¡æœ‰è€ƒè™‘åæ˜¾
 {
 	byte c,c2;
 	unsigned long mask;
@@ -2744,7 +2744,7 @@ void printfloat()
 	for (i=0;;i++) {
 		if (num[i]=='e' && i) flag=1;
 		if (flag) flag++;
-		if (flag==4) continue; //×ª»»x.xxxxxe+0yyÎªx.xxxxxe+yy
+		if (flag==4) continue; //è½¬æ¢x.xxxxxe+0yyä¸ºx.xxxxxe+yy
 		if (num[i]) cout(num[i]);
 		else break;
 	}
@@ -3579,7 +3579,7 @@ void c_sprintf()
 				for (i=0;;i++) {
 					if (num[i]=='e' && i) flag=1;
 					if (flag) flag++;
-					if (flag==4) continue; //×ª»»x.xxxxxe+0yyÎªx.xxxxxe+yy
+					if (flag==4) continue; //è½¬æ¢x.xxxxxe+0yyä¸ºx.xxxxxe+yy
 					if (num[i]) lRamWrite(str1++,num[i]);
 					else break;
 				}
@@ -3774,15 +3774,15 @@ void c_getblock()
 	if (graph_mode==1)
 		width=(word)a1>>3;
 	else if (graph_mode==4)
-		width=(word)(a1&0xfff8)>>1; //Ê¹¿í¶ÈÊÇ8µÄÕûÊı±¶
+		width=(word)(a1&0xfff8)>>1; //ä½¿å®½åº¦æ˜¯8çš„æ•´æ•°å€
 	else
 		width=(word)a1;
 	get_val();
 	yy=(word)a1;
 	get_val();
 	if (graph_mode==8) xx=(word)a1;
-	else xx=(word)(a1&0xfff8); //Ê¹xxÊÇ8µÄÕûÊı±¶
-	if (width==0 || height==0) return; //Èİ´í
+	else xx=(word)(a1&0xfff8); //ä½¿xxæ˜¯8çš„æ•´æ•°å€
+	if (width==0 || height==0) return; //å®¹é”™
 	ByteAddr();
 	if (RamBits>16) a3&=0xffffff;
 	else a3&=0xffff;
@@ -4018,8 +4018,8 @@ int c_keyid(byte k)
 	else if (k=='.') k=190;
 	else if (k=='0' || k==' ' || k==13 || k==27) ;
 	else if (k==26) k=16; //Shift
-	else if (k==25) k=116; //F5×÷ÎªÇóÖú
-	else if (k==18) k=117; //F6×÷ÎªÊäÈë·¨
+	else if (k==25) k=116; //F5ä½œä¸ºæ±‚åŠ©
+	else if (k==18) k=117; //F6ä½œä¸ºè¾“å…¥æ³•
 	else k=0;
 	return k;
 }
@@ -4037,8 +4037,8 @@ byte c_keyval(byte k)
 	else if (k=='0' || k==' ' || k==13 || k==27) ;
 	else if (k==16) k=26; //Shift
 	else if (k>='1' && k<='9') k=num_tbl[k-'1'];
-	else if (k==116) k=25; //F5×÷ÎªÇóÖú
-	else if (k==117) k=18; //F6×÷ÎªÊäÈë·¨
+	else if (k==116) k=25; //F5ä½œä¸ºæ±‚åŠ©
+	else if (k==117) k=18; //F6ä½œä¸ºè¾“å…¥æ³•
 	else k=0;
 	return k;
 }
@@ -4144,7 +4144,7 @@ void c_chdir()
 	char fname[MAX_PATH];
 
 	GetDirName(fname);
-	if (strstr(fname,FcPath)==NULL) a1=LFALSE; //Lee Îªpc°²È«,²»×¼·ÃÎÊÆäËüÄ¿Â¼
+	if (strstr(fname,FcPath)==NULL) a1=LFALSE; //Lee ä¸ºpcå®‰å…¨,ä¸å‡†è®¿é—®å…¶å®ƒç›®å½•
 	else if (SetCurrentDirectory(fname)) {
 		a1=LTRUE;
 		strcpy(CD,fname);
@@ -4157,7 +4157,7 @@ void c_makedir()
 	char fname[MAX_PATH];
 
 	GetDirName(fname);
-	if (strstr(fname,FcPath)==NULL) a1=LFALSE; //Lee Îªpc°²È«,²»×¼·ÃÎÊÆäËüÄ¿Â¼
+	if (strstr(fname,FcPath)==NULL) a1=LFALSE; //Lee ä¸ºpcå®‰å…¨,ä¸å‡†è®¿é—®å…¶å®ƒç›®å½•
 	else if (CreateDirectory(fname,NULL)) {
 		a1=LTRUE;
 	} else a1=LFALSE;
@@ -4187,7 +4187,7 @@ void get_name()
 		strcat(FileName,fname);
 	}
 	GetFullPathName(FileName,250,fname,&p);
-	if (strstr(fname,FcPath)==NULL) FileName[0]=0; //Lee Îªpc°²È«,²»×¼·ÃÎÊÆäËüÄ¿Â¼
+	if (strstr(fname,FcPath)==NULL) FileName[0]=0; //Lee ä¸ºpcå®‰å…¨,ä¸å‡†è®¿é—®å…¶å®ƒç›®å½•
 	strcpy(VirtualFullName,fname+strlen(FcPath)-1);
 	for (i=0;;i++) {
 		if (VirtualFullName[i]=='\\') VirtualFullName[i]='/';
@@ -4411,7 +4411,7 @@ void c_fread()
 	else str=(word)a1;
 	if (modeAccess[fmode[curr_fnum]]&GENERIC_READ) {
 		if (foffset[curr_fnum]+len>fsize[curr_fnum])
-			len=fsize[curr_fnum]-foffset[curr_fnum]; //¶ÁÎÄ¼ş²»³¬¹ıÎÄ¼şÎ²
+			len=fsize[curr_fnum]-foffset[curr_fnum]; //è¯»æ–‡ä»¶ä¸è¶…è¿‡æ–‡ä»¶å°¾
 		if (len) {
 			CheckAddr(str,str+len-1,6);
 			if (!ReadFile(FileHandle,lRam+str,len,&a1,NULL)) a1=0;
@@ -4478,7 +4478,7 @@ void c_getc()
 		put_val();
 		return;
 	}
-	if (foffset[curr_fnum]==fsize[curr_fnum]) a1=-1; //½áÊø
+	if (foffset[curr_fnum]==fsize[curr_fnum]) a1=-1; //ç»“æŸ
 	else if (modeAccess[fmode[curr_fnum]]&GENERIC_READ) {
 		if (!ReadFile(FileHandle,&c,1,&a1,NULL)) a1=0;
 		if (a1==1) {
@@ -4591,7 +4591,7 @@ void c_exec()
 	get_val2();
 	get_name();
 	a1=-1;
-	if (!FileName[0] || (task_lev==0 && RamBits==16)) { //16Î»Ğ¡RAMÎŞ·¨¼ÓÔØÖ´ĞĞlav³ÌĞò
+	if (!FileName[0] || (task_lev==0 && RamBits==16)) { //16ä½å°RAMæ— æ³•åŠ è½½æ‰§è¡Œlavç¨‹åº
 		put_val();
 		return;
 	}
@@ -4911,12 +4911,12 @@ xxx:
 				a1=(curr_file+1)+(first_file<<16);
 				put_val();
 				wait_key=0;
-			} else if (lav_key==29 && (list_set&0x40)) { //F2(É¾³ı)ÓĞĞ§
+			} else if (lav_key==29 && (list_set&0x40)) { //F2(åˆ é™¤)æœ‰æ•ˆ
 				get_file_name(CD,curr_file,lRam+ListFileAddr);
 				a1=-1;
 				put_val();
 				wait_key=0;
-			} else if (lav_key==25 && (list_set&0x20)) { //HELPÓĞĞ§
+			} else if (lav_key==25 && (list_set&0x20)) { //HELPæœ‰æ•ˆ
 				get_file_name(CD,curr_file,lRam+ListFileAddr);
 				a1=-2;
 				put_val();

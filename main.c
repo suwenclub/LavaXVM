@@ -24,8 +24,8 @@ int stop_line=-1,stop_func,sline[256],sline_num;
 unsigned long timel,times,IdleParam;
 byte *pAllLAVA,*pLAVA,*pNextLAVA;
 byte old_keyb[256],cur_keyb[256];
-struct MESSAGE hardinput[256]; //LavaXĞéÄâ»úµÄÓ²¼şÊäÈëÏûÏ¢¶ÓÁĞ
-byte hardinput_rp,hardinput_wp; //Ó²¼şÊäÈëÏûÏ¢¶ÓÁĞµÄ¶ÁĞ´Ö¸Õë
+struct MESSAGE hardinput[256]; //LavaXè™šæ‹Ÿæœºçš„ç¡¬ä»¶è¾“å…¥æ¶ˆæ¯é˜Ÿåˆ—
+byte hardinput_rp,hardinput_wp; //ç¡¬ä»¶è¾“å…¥æ¶ˆæ¯é˜Ÿåˆ—çš„è¯»å†™æŒ‡é’ˆ
 byte lav_key;
 byte KeyID;
 BOOL KeyPress;
@@ -118,7 +118,7 @@ void SetWindow(int width,int height)
 static void CloseRom()
 {
 	if (EmuRunning) good_exit();
-	EmuRunning=0; //ÊÍ·ÅROMËùÕ¼ÄÚ´æ
+	EmuRunning=0; //é‡Šæ”¾ROMæ‰€å å†…å­˜
 	PauseFlag=1;
 	mesDrawTitle();
 	InvalidateRect(hwnd_main,NULL,FALSE);
@@ -143,7 +143,7 @@ void RomReset()
 	RamError=0;
 	CurFrame=0;
 	TotalFrame=0;
-	memset(BmpData,0,320*ScreenHeight); //ÇåÆÁ
+	memset(BmpData,0,320*ScreenHeight); //æ¸…å±
 	memset(ScreenBuffer,0,320*8);
 	lavReset();
 }
@@ -177,9 +177,9 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	else CommandLine=0;
 	hwnd_main=0;
 	if ((pAllLAVA=malloc(0x100000))==0) {
-		FATAL("ÄÚ´æ²»×ã!");
+		FATAL("å†…å­˜ä¸è¶³!");
 		return 0;
-	} //ÎªLAVA³ÌĞòÉêÇë1MÄÚ´æ,ÒÔºó¿ÉÒÔ¼Ó´ó¡£
+	} //ä¸ºLAVAç¨‹åºç”³è¯·1Må†…å­˜,ä»¥åå¯ä»¥åŠ å¤§ã€‚
 	task[0].pLAVA=pAllLAVA;
 
 	hInstan=hInstance;
@@ -322,14 +322,14 @@ int UnPac(char *pacname,char *zname)
 
 	have_lav=0;
 	if ((fp=fopen(pacname,"rb"))==NULL) {
-		FATAL("ÎŞ·¨´ò¿ªPACÎÄ¼ş!");
+		FATAL("æ— æ³•æ‰“å¼€PACæ–‡ä»¶!");
 		return 0;
 	}
 	fseek(fp,0,SEEK_SET);
 	SizeRead=fread(t,1,16,fp);
 	if (SizeRead!=16 || t[0]!='P' || t[1]!='A' || t[2]!='C' || t[3]!=' ') {
 		fclose(fp);
-		FATAL("²»ÊÇÓĞĞ§µÄPACÎÄ¼ş!");
+		FATAL("ä¸æ˜¯æœ‰æ•ˆçš„PACæ–‡ä»¶!");
 		return 0;
 	}
 	fread(&total,1,2,fp);
@@ -391,17 +391,17 @@ void FileOpen()
 	ofn.hwndOwner=hwnd_main;
 	ofn.hInstance=hInstan;
 	ofn.lpstrDefExt="lav";
-	ofn.lpstrFilter="LavaXÎÄ¼ş (*.lav,*.pac)\0*.lav;*.pac\0ËùÓĞÎÄ¼ş (*.*)\0*.*\0";
+	ofn.lpstrFilter="LavaXæ–‡ä»¶ (*.lav,*.pac)\0*.lav;*.pac\0æ‰€æœ‰æ–‡ä»¶ (*.*)\0*.*\0";
 	ofn.lpstrFile=RomName;
 	ofn.nMaxFile=MAX_PATH;
 	ofn.Flags=OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST|
               OFN_LONGNAMES|OFN_EXPLORER|OFN_HIDEREADONLY;
-	ofn.lpstrTitle="´ò¿ªLavaXÎÄ¼ş";
+	ofn.lpstrTitle="æ‰“å¼€LavaXæ–‡ä»¶";
 	if (GetOpenFileName(&ofn)==0) return;
 	strcpy(zname,RomName);
 abc:
 	if ((fp=fopen(zname,"rb"))==NULL) {
-		FATAL("ÎŞ·¨´ò¿ªLavaXÎÄ¼ş!");
+		FATAL("æ— æ³•æ‰“å¼€LavaXæ–‡ä»¶!");
 		return;
 	}
 	fseek(fp,0,SEEK_SET);
@@ -418,7 +418,7 @@ abc:
 		if (zname[0]==0) return;
 		goto abc;
 	} else {
-		FATAL("²»ÊÇÓĞĞ§µÄLavaXÎÄ¼ş!");
+		FATAL("ä¸æ˜¯æœ‰æ•ˆçš„LavaXæ–‡ä»¶!");
 		fclose(fp);
 		return;
 	}
@@ -462,7 +462,7 @@ void FileOpenX()
 	int i;
 
 	if ((fp=fopen(CommandLine,"rb"))==NULL) {
-		FATAL("ÎŞ·¨´ò¿ªLavaXÎÄ¼ş!");
+		FATAL("æ— æ³•æ‰“å¼€LavaXæ–‡ä»¶!");
 		exit(0);
 	}
 	fseek(fp,0,SEEK_SET);
@@ -473,7 +473,7 @@ void FileOpenX()
 		pLAVA=pAllLAVA;
 		if (!LavOpen(fp)) return;
 	} else {
-		FATAL("²»ÊÇÓĞĞ§µÄLavaXÎÄ¼ş!");
+		FATAL("ä¸æ˜¯æœ‰æ•ˆçš„LavaXæ–‡ä»¶!");
 		fclose(fp);
 		exit(0);
 	}
@@ -499,7 +499,7 @@ LRESULT CALLBACK AboutProc(HWND hWnd,UINT message,WPARAM wParam,LPARAM lParam)
 	switch (message)
 	{
 	case WM_INITDIALOG:
-		SendDlgItemMessage(hWnd,IDC_EDIT1,WM_SETTEXT,0,(LPARAM)("¾¯¸æ£º±¾¼ÆËã»ú³ÌĞòÊÜÖø×÷È¨·¨ºÍ¹ú¼Ê¹«Ô¼µÄ±£»¤£¬Î´¾­ÊÚÈ¨ÉÃ×Ô¸´ÖÆ»òÉ¢²¼±¾³ÌĞòµÄ²¿·Ö»òÈ«²¿£¬½«³ĞÊÜÑÏÀ÷µÄÃñÊÂºÍĞÌÊÂ´¦·££¬¶ÔÒÑÖªµÄÎ¥·´Õß½«¸øÓè·¨ÂÉ·¶Î§ÄÚµÄÈ«ÃæÖÆ²Ã¡£"));
+		SendDlgItemMessage(hWnd,IDC_EDIT1,WM_SETTEXT,0,(LPARAM)("è­¦å‘Šï¼šæœ¬è®¡ç®—æœºç¨‹åºå—è‘—ä½œæƒæ³•å’Œå›½é™…å…¬çº¦çš„ä¿æŠ¤ï¼Œæœªç»æˆæƒæ“…è‡ªå¤åˆ¶æˆ–æ•£å¸ƒæœ¬ç¨‹åºçš„éƒ¨åˆ†æˆ–å…¨éƒ¨ï¼Œå°†æ‰¿å—ä¸¥å‰çš„æ°‘äº‹å’Œåˆ‘äº‹å¤„ç½šï¼Œå¯¹å·²çŸ¥çš„è¿åè€…å°†ç»™äºˆæ³•å¾‹èŒƒå›´å†…çš„å…¨é¢åˆ¶è£ã€‚"));
 		break;
 	case WM_CLOSE:
 		EndDialog(hWnd,0);
@@ -687,7 +687,7 @@ LRESULT CALLBACK WndProc(HWND hWnd,UINT message,WPARAM wParam,LPARAM lParam)
 					} else {
 						CheckMenuItem(hMenu,ID_TVSCAN,MF_CHECKED);
 						TVSCAN=1;
-						memset(ScreenBufferX,255,320*336); //Çå´óÆÁ
+						memset(ScreenBufferX,255,320*336); //æ¸…å¤§å±
 					}
 					break;
 				case ID_GRAY:
@@ -855,8 +855,8 @@ void EmuRun()
 					else if (lav_key=='0' || lav_key==' ' || lav_key==13 || lav_key==27) ;
 					else if (lav_key==16) lav_key=26; //Shift
 					else if (lav_key>='1' && lav_key<='9') lav_key=num_tbl[lav_key-'1'];
-					else if (lav_key==116) lav_key=25; //F5×÷ÎªÇóÖú
-					else if (lav_key==117) lav_key=18; //F6×÷ÎªÊäÈë·¨
+					else if (lav_key==116) lav_key=25; //F5ä½œä¸ºæ±‚åŠ©
+					else if (lav_key==117) lav_key=18; //F6ä½œä¸ºè¾“å…¥æ³•
 					else {
 						lav_key=0;
 						continue;
